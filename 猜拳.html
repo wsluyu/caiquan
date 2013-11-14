@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Untitled</title>
+        <style type="text/css">
+            #cut,#stone,#cloth{
+                width: 80px;
+                background: #86c3ef;
+            }
+            div{margin-top: 18px;}
+            #main{margin: auto;
+              position: absolute;
+              top: 0; left: 0; bottom: 0; right: 0;
+              width: 500px;
+              height: 500px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="main">
+    		<input type="button" id="cut" value="剪刀">
+    		<input type="button" id="stone" value="石头">
+    		<input type="button" id="cloth" value="布">
+            <div>My Guess：<input id="mine" value=""></div>
+            <div><button id="Guess">Guess Guess!</button></div>
+    		<div>Computer GUess：<input id="computer" value=""></div>
+        </div>
+
+        <script type="text/javascript">
+            window.onload = function(){
+                var stone = document.getElementById("stone");
+                var cut = document.getElementById("cut");
+                var cloth = document.getElementById("cloth");
+                var Guess = document.getElementById("Guess");
+                var mine = document.getElementById("mine");
+                var computer = document.getElementById("computer");
+                    function click(){
+                    mine.value = this.value;
+                }
+                stone.onclick = click;
+                cut.onclick = click;
+                cloth.onclick =click;
+
+                Guess.onclick =function(){
+                    var num = Math.floor(Math.random()*3 +1 );
+                    if (num==1) {
+                        computer.value="石头";
+                    } else if (num==2) {
+						computer.value="剪刀";
+					} else if(num==3) {
+						computer.value="布";
+					}
+					
+					var mineValue = mine.value;
+					var computerValue = computer.value;
+					if (mineValue==computerValue) {
+						alert("平局")
+					} else if (mineValue=="剪刀") {
+						alert(computerValue=="石头"?"you win":"lost")
+					} else if (mineValue=="石头") {
+						alert(computerValue=="布"?"you win":"lost")
+					} else if (mineValue=="布") {
+						alert(computerValue=="剪刀"?"you win":"lost")
+					}
+					mine.value ="";
+					computer.value ="";
+				}
+			}
+            
+        </script>
+    </body>
+</html>
